@@ -24,7 +24,7 @@ function authenticateWithTwitch() {
     const params = {
         client_id,
         redirect_uri,
-        response_type: 'json',
+        response_type: 'token',
         scope
     };
 
