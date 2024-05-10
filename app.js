@@ -18,14 +18,13 @@ const bitrate = bitrateEl.textContent;
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
 const scope = "user:read:follows"; // Adjust scopes as needed
-localStorage.setItem("Oauth",false);
 
 // Function to redirect user to Twitch authentication page
 function authenticateWithTwitch() {
     const params = {
         client_id,
         redirect_uri,
-        response_type: 'token',
+        response_type: 'code',
         scope
     };
 
@@ -33,14 +32,14 @@ function authenticateWithTwitch() {
     const authorizationUrl = `https://id.twitch.tv/oauth2/authorize?${queryString}`;
     console.log("Authentificating with Twitch Oauth...");
     localStorage.setItem("Oauth",true);
-    window.location.href = authorizationUrl;
+    // window.location.href = authorizationUrl;
 }
 
 // Function to handle Twitch authentication callback
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-
+    console.log("Noura");
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         fetch('https://api.twitch.tv/helix/users/follows?to_id=rocmine', {
@@ -58,9 +57,11 @@ function handleTwitchCallback() {
 }
 
 window.onload = () => {
+  if (!localStorage.getItem("Oauth")) localStorage.setItem("Oauth") == "false";
+
   if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
-  if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
-  console.log(localStorage.getItem("Oauth"));
+  else if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
+  
 }
 
 
