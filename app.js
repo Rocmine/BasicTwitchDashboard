@@ -36,15 +36,15 @@ function handleTwitchCallback() {
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
-        var t=setInterval(fetchingInfo,5000);
+        setInterval(fetchingInfo(client_id,accessToken),5000);
     }
 }
 
-function fetchingInfo() {
+function fetchingInfo(cliid,token) {
     fetch(`https://api.twitch.tv/helix/streams?user_login=${user_id}`, {
             headers: {
-                'Client-ID': client_id,
-                'Authorization': `Bearer ${accessToken}`
+                'Client-ID': cliid,
+                'Authorization': `Bearer ${token}`
             }
         })
        .then(response => response.json())
