@@ -11,7 +11,7 @@ const viewersCount = viewersCountEl.textContent;
 const subsCount = subsCountEl.textContent;
 const followCount = followCountEl.textContent;
 const subsPoint = subsPointEl.textContent;
-const sessionTime = sessionTimeEl.textContent;
+let sessionTime = sessionTimeEl.textContent;
 const bitrate = bitrateEl.textContent;
 
 // Twitch authentication parameters
