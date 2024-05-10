@@ -47,11 +47,11 @@ function handleTwitchCallback() {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        .then(response => response.json())
-        .then(data => {
+       .then(response => response.json())
+       .then(data => {
             console.log(data); // Handle the Twitch API response here
         })
-        .catch(error => console.error('Error:', error));
+       .catch(error => console.error('Error:', error));
     }
 }
 
@@ -60,9 +60,4 @@ window.onload = () => {
 
   if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
   else if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
-  
 }
-
-
-
-
