@@ -31,6 +31,7 @@ function authenticateWithTwitch() {
 
     const queryString = new URLSearchParams(params).toString();
     const authorizationUrl = `https://id.twitch.tv/oauth2/authorize?${queryString}`;
+    console.log("Authentificating with Twitch Oauth...");
     localStorage.setItem("Oauth",true);
     window.location.href = authorizationUrl;
 }
