@@ -58,8 +58,10 @@ function handleTwitchCallback() {
 }
 
 window.onload = () => {
-  if (localStorage.getItem("Oauth") == false) authenticateWithTwitch();
-  else if (localStorage.getItem("Oauth") == true) handleTwitchCallback();
+  if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
+  else if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
 }
+
+console.log(localStorage.getItem("Oauth"));
 
 
