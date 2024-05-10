@@ -43,7 +43,6 @@ function handleTwitchCallback() {
         // Use the access token to make requests to the Twitch API
         fetch('https://api.twitch.tv/helix/streams', {
             headers: {
-                'user_login': user,
                 'Client-ID': client_id,
                 'Authorization': `Bearer ${accessToken}`
             }
