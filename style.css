@@ -21,7 +21,7 @@ body {
     grid-template-areas:
         "viewers_count subs_count chat"
         "follow_count  subs_point chat"
-        "bitrate_count session_count chat";
+        "session_count bitrate_count chat";
     grid-auto-flow: row;
     /* Add this property */
     background-color: var(--bg);
@@ -174,7 +174,9 @@ body {
 
     h1 {
         color: #fff;
-        font-size: 7em;
+        font-size: 1.3em;
+        text-wrap: balance;
+        text-overflow: clip;
     }
 }
 
@@ -203,7 +205,9 @@ body {
 
     h1 {
         color: #fff;
-        font-size: 7em;
+        font-size: 4em;
+        text-overflow: clip;
+        
     }
 }
 

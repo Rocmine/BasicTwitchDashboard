@@ -6,6 +6,8 @@ const subsPointEl = document.querySelector('#subs_point h1');
 const sessionTimeEl = document.querySelector('#session h1');
 const bitrateEl = document.querySelector('#bitrate h1');
 
+const ttvChat = document.querySelector('#chatting');
+
 // Twitch authentication parameters
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
@@ -43,7 +45,8 @@ function handleTwitchCallback() {
        .then(res => {
             console.log(res);
             sessionTimeEl.textContent = res.data[0].title;
-            viewersCountEl.textContent = res.data[0].viewers;
+            viewersCountEl.textContent = res.data[0].viewer_count;
+            ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         })
        .catch(error => console.error('Error:', error));
     }
