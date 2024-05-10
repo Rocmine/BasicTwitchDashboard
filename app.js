@@ -48,9 +48,9 @@ function handleTwitchCallback() {
             }
         })
        .then(response => response.json())
-       .then(data => {
+       .then(res => {
             console.log(data);
-            sessionTime = data.data[0].title;
+            sessionTime = res.data[0].title;
         })
        .catch(error => console.error('Error:', error));
     }
