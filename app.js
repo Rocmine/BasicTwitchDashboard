@@ -18,6 +18,7 @@ const bitrate = bitrateEl.textContent;
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "http://rocmine.github.io/BasicTwitchDashboard/dash";
 const scope = "user:read:follows"; // Adjust scopes as needed
+localStorage.setItem("Oauth",false);
 
 // Function to redirect user to Twitch authentication page
 function authenticateWithTwitch() {
@@ -32,6 +33,7 @@ function authenticateWithTwitch() {
     const authorizationUrl = `https://id.twitch.tv/oauth2/authorize?${queryString}`;
 
     window.location.href = authorizationUrl;
+    localStorage.setItem("Oauth",true);
 }
 
 // Function to handle Twitch authentication callback
@@ -54,3 +56,10 @@ function handleTwitchCallback() {
         .catch(error => console.error('Error:', error));
     }
 }
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("Oauth") == false) {
+    authenticateWithTwitch();
+  }
+  handleTwitchCallback();
+})
