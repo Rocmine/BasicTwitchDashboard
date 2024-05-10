@@ -36,7 +36,7 @@ function handleTwitchCallback() {
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
-        setInterval(fetchingInfo(client_id,accessToken),5000);
+        setInterval(() => {fetchingInfo(client_id,accessToken);},5000);
     }
 }
 
@@ -52,6 +52,7 @@ function fetchingInfo(cliid,token) {
             console.log(res);
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
+            bitrateEl.textContent = res.data[0].game_name;
         })
        .catch(error => console.error('Error:', error));
 }
@@ -74,7 +75,7 @@ window.onload = () => {
 }
 
 window.addEventListener("close",() => {
-    clearInterval(t);
+    clearInterval();
 })
 
 // ROCMINE
