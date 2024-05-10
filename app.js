@@ -17,9 +17,8 @@ const bitrate = bitrateEl.textContent;
 // Use the Twitch API to get the game title
 const ClientID = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 
-function getFollowerCount(channelId) {
+function getFollowerCount() {
   const url = new URL('https://api.twitch.tv/helix/users/follows');
-  url.searchParams.append('channel', channelId);  // Replace with desired channel ID
   const headers = new Headers({
     'Client-ID': ClientID // Replace with your Twitch API Client ID
   });
