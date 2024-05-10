@@ -1,0 +1,218 @@
+:root {
+    --bg: #191919;
+    --accent-red: #ff4e20;
+    --accent-yellow: #b8ff20;
+    --twitch_purpl: #6441a5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "viewers_count subs_count chat"
+        "follow_count  subs_point chat"
+        "bitrate_count session_count chat";
+    grid-auto-flow: row;
+    /* Add this property */
+    background-color: var(--bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.viewers_count {
+    grid-area: viewers_count;
+    background-color: #00ffff55;
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    i {
+        color: var(--accent-red);
+        font-size: 2.2em;
+    }
+
+    h6 {
+        align-items: left;
+        color: #ffffff;
+        font-size: 2em;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 7em;
+    }
+}
+
+/* SUBSCRIBERS ZONE */
+
+.subs_count {
+    grid-area: subs_count;
+    background-color: #00ff1e55;
+    
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    i {
+        color: var(--accent-red);
+        font-size: 2.2em;
+    }
+
+    h6 {
+        align-items: left;
+        color: #ffffff;
+        font-size: 2em;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 7em;
+    }
+}
+
+/* SUBSCRIBERS POINTS ZONE */
+
+.subs_point {
+    grid-area: subs_point;
+    background-color: #00ff1e55;
+    
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    i {
+        color: var(--accent-red);
+        font-size: 2.2em;
+    }
+
+    h6 {
+        align-items: left;
+        color: #ffffff;
+        font-size: 2em;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 7em;
+    }
+}
+
+/* FOLLOWERS ZONE */
+
+.follow_count {
+    grid-area: follow_count;
+    background-color: #00ff1e55;
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    i {
+        color: var(--accent-red);
+        font-size: 2.2em;
+    }
+
+    h6 {
+        align-items: left;
+        color: #ffffff;
+        font-size: 2em;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 7em;
+    }
+}
+
+/* session ZONE */
+
+.session_count {
+    grid-area: session_count;
+    background-color: #00ff1e55;
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    i {
+        color: var(--accent-red);
+        font-size: 2.2em;
+    }
+
+    h6 {
+        align-items: left;
+        color: #ffffff;
+        font-size: 2em;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 7em;
+    }
+}
+
+/* BITRATE */
+
+.bitrate_count {
+    grid-area: bitrate_count;
+    background-color: #00ff1e55;
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    i {
+        color: var(--accent-red);
+        font-size: 2.2em;
+    }
+
+    h6 {
+        align-items: left;
+        color: #ffffff;
+        font-size: 2em;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 7em;
+    }
+}
+
+/* BITRATE */
+
+.chat {
+    grid-area: chat;
+    iframe {
+        border: none !important;
+        overflow: hidden;
+    }
+}
