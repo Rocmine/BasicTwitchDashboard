@@ -6,14 +6,6 @@ const subsPointEl = document.querySelector('#subs_point h1');
 const sessionTimeEl = document.querySelector('#session h1');
 const bitrateEl = document.querySelector('#bitrate h1');
 
-// Extract the text content
-const viewersCount = viewersCountEl.textContent;
-const subsCount = subsCountEl.textContent;
-const followCount = followCountEl.textContent;
-const subsPoint = subsPointEl.textContent;
-let sessionTime = sessionTimeEl.textContent;
-const bitrate = bitrateEl.textContent;
-
 // Twitch authentication parameters
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
@@ -50,7 +42,7 @@ function handleTwitchCallback() {
        .then(response => response.json())
        .then(res => {
             console.log(data);
-            sessionTime = res.data[0].title;
+            sessionTimeEl.textContent = res.data[0].title;
         })
        .catch(error => console.error('Error:', error));
     }
