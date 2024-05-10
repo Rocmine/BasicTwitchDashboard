@@ -67,3 +67,4 @@ window.onload = () => {
 
 // ROCMINE
 // Made with Love <3
+// i love a girl but i cant say anything,that why im coding (heh?)
