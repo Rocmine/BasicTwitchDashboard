@@ -36,6 +36,7 @@ function handleTwitchCallback() {
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
+        fetchingInfo(client_id,accessToken);
         setInterval(() => {fetchingInfo(client_id,accessToken);},30000);
     }
 }
