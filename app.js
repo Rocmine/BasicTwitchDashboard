@@ -57,7 +57,9 @@ function handleTwitchCallback() {
     }
 }
 
-document.addEventListener("load", () => {
+window.onload = () => {
   if (localStorage.getItem("Oauth") == false) authenticateWithTwitch();
   else if (localStorage.getItem("Oauth") == true) handleTwitchCallback();
-})
+}
+
+
