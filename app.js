@@ -41,7 +41,9 @@ function handleTwitchCallback() {
         })
        .then(response => response.json())
        .then(res => {
+            console.log(res);
             sessionTimeEl.textContent = res.data[0].title;
+            viewersCountEl.textContent = res.data[0].viewers;
         })
        .catch(error => console.error('Error:', error));
     }
@@ -66,5 +68,4 @@ window.onload = () => {
 
 // ROCMINE
 // Made with Love <3
-// i love a girl but i cant say anything,that why im coding (heh?)
 // Life is a roblox
