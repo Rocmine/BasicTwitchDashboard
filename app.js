@@ -24,7 +24,7 @@ function authenticateWithTwitch() {
     const params = {
         client_id,
         redirect_uri,
-        response_type: 'code',
+        response_type: 'json',
         scope
     };
 
@@ -32,14 +32,13 @@ function authenticateWithTwitch() {
     const authorizationUrl = `https://id.twitch.tv/oauth2/authorize?${queryString}`;
     console.log("Authentificating with Twitch Oauth...");
     localStorage.setItem("Oauth",true);
-    // window.location.href = authorizationUrl;
+    window.location.href = authorizationUrl;
 }
 
 // Function to handle Twitch authentication callback
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-    console.log("Noura");
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         fetch('https://api.twitch.tv/helix/users/follows?to_id=rocmine', {
