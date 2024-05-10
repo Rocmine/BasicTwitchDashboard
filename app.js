@@ -35,7 +35,13 @@ function handleTwitchCallback() {
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
-        fetch(`https://api.twitch.tv/helix/streams?user_login=${user_id}`, {
+        ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
+        var t=setInterval(fetchingInfo,5000);
+    }
+}
+
+function fetchingInfo() {
+    fetch(`https://api.twitch.tv/helix/streams?user_login=${user_id}`, {
             headers: {
                 'Client-ID': client_id,
                 'Authorization': `Bearer ${accessToken}`
@@ -46,10 +52,8 @@ function handleTwitchCallback() {
             console.log(res);
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
-            ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         })
        .catch(error => console.error('Error:', error));
-    }
 }
 
 function getUser() {
@@ -68,6 +72,10 @@ window.onload = () => {
         }
     };
 }
+
+window.addEventListener("close",() => {
+    clearInterval(t);
+})
 
 // ROCMINE
 // Made with Love <3
