@@ -24,14 +24,13 @@ function authenticateWithTwitch() {
     const params = {
         client_id,
         redirect_uri,
-        response_type: 'token',
+        response_type: 'token', // Changed to 'token' for implicit grant flow
         scope
     };
-
     const queryString = new URLSearchParams(params).toString();
     const authorizationUrl = `https://id.twitch.tv/oauth2/authorize?${queryString}`;
-    console.log("Authentificating with Twitch Oauth...");
-    localStorage.setItem("Oauth",true);
+    console.log("Authenticating with Twitch OAuth...");
+    localStorage.setItem("Oauth", true);
     window.location.href = authorizationUrl;
 }
 
@@ -39,6 +38,7 @@ function authenticateWithTwitch() {
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
+    const user = new URLSearchParams(window.location.hash.substring(1)).get('user_id');
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         fetch('https://api.twitch.tv/helix/streams', {
@@ -56,8 +56,8 @@ function handleTwitchCallback() {
 }
 
 window.onload = () => {
-  if (localStorage.getItem("Oauth")==null) localStorage.setItem("Oauth",false);
+    if (localStorage.getItem("Oauth") == null) localStorage.setItem("Oauth", false);
 
-  if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
-  else if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
+    if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
+    else if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
 }
