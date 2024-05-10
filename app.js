@@ -16,7 +16,7 @@ const bitrate = bitrateEl.textContent;
 
 // Twitch authentication parameters
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
-const redirect_uri = "http://rocmine.github.io/BasicTwitchDashboard/dash";
+const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
 const scope = "user:read:follows"; // Adjust scopes as needed
 localStorage.setItem("Oauth",false);
 
