@@ -1,7 +1,6 @@
 :root {
     --bg: #191919;
     --accent-red: #ff4e20;
-    --accent-yellow: #b8ff20;
     --twitch_purpl: #6441a5;
 }
 
@@ -37,7 +36,6 @@ body {
 
 .viewers_count {
     grid-area: viewers_count;
-    background-color: #00ffff55;
 
     .title {
         display: flex;
@@ -66,7 +64,6 @@ body {
 
 .subs_count {
     grid-area: subs_count;
-    background-color: #00ff1e55;
     
     .title {
         display: flex;
@@ -75,7 +72,7 @@ body {
     }
 
     i {
-        color: var(--accent-red);
+        color: var(--twitch_purpl);
         font-size: 2.2em;
     }
 
@@ -95,7 +92,6 @@ body {
 
 .subs_point {
     grid-area: subs_point;
-    background-color: #00ff1e55;
     
     .title {
         display: flex;
@@ -104,7 +100,7 @@ body {
     }
 
     i {
-        color: var(--accent-red);
+        color: var(--twitch_purpl);
         font-size: 2.2em;
     }
 
@@ -124,7 +120,6 @@ body {
 
 .follow_count {
     grid-area: follow_count;
-    background-color: #00ff1e55;
 
     .title {
         display: flex;
@@ -133,7 +128,7 @@ body {
     }
 
     i {
-        color: var(--accent-red);
+        color: var(--twitch_purpl);
         font-size: 2.2em;
     }
 
@@ -153,7 +148,6 @@ body {
 
 .session_count {
     grid-area: session_count;
-    background-color: #00ff1e55;
 
     .title {
         display: flex;
@@ -162,7 +156,7 @@ body {
     }
 
     i {
-        color: var(--accent-red);
+        color: var(--twitch_purpl);
         font-size: 2.2em;
     }
 
@@ -174,7 +168,7 @@ body {
 
     h1 {
         color: #fff;
-        font-size: 1.3em;
+        font-size: 1.3vmax;
         text-wrap: balance;
         text-overflow: clip;
     }
@@ -184,7 +178,6 @@ body {
 
 .bitrate_count {
     grid-area: bitrate_count;
-    background-color: #00ff1e55;
 
     .title {
         display: flex;
@@ -193,7 +186,7 @@ body {
     }
 
     i {
-        color: var(--accent-red);
+        color: var(--twitch_purpl);
         font-size: 2.2em;
     }
 
@@ -207,7 +200,6 @@ body {
         color: #fff;
         font-size: 4em;
         text-overflow: clip;
-        
     }
 }
 

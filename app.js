@@ -36,7 +36,7 @@ function handleTwitchCallback() {
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
-        setInterval(() => {fetchingInfo(client_id,accessToken);},5000);
+        setInterval(() => {fetchingInfo(client_id,accessToken);},30000);
     }
 }
 
@@ -58,7 +58,7 @@ function fetchingInfo(cliid,token) {
 }
 
 function getUser() {
-    let person = prompt("Please enter your twitch channel:", "");
+    let person = prompt("Please enter your twitch channel username:", "");
     user_id = person;
 }
 
