@@ -50,7 +50,7 @@ function handleTwitchCallback() {
        .then(response => response.json())
        .then(data => {
             console.log(data);
-            sessionTime = data[0].title;
+            sessionTime = data.data[0].title;
         })
        .catch(error => console.error('Error:', error));
     }
