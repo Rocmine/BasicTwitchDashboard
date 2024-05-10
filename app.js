@@ -41,7 +41,7 @@ function handleTwitchCallback() {
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
-        fetch('https://api.twitch.tv/helix/users/follows?to_id=rocmine', {
+        fetch('https://api.twitch.tv/helix/channels/?to_id=rocmine', {
             headers: {
                 'Client-ID': client_id,
                 'Authorization': `Bearer ${accessToken}`
