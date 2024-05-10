@@ -18,6 +18,7 @@ const bitrate = bitrateEl.textContent;
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
 const scope = "user:read:follows"; // Adjust scopes as needed
+let user_id=null;
 
 // Function to redirect user to Twitch authentication page
 function authenticateWithTwitch() {
@@ -38,10 +39,9 @@ function authenticateWithTwitch() {
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-    const user = new URLSearchParams(window.location.hash.substring(1)).get('user_id');
     if (accessToken) {
         // Use the access token to make requests to the Twitch API
-        fetch('https://api.twitch.tv/helix/streams', {
+        fetch(`https://api.twitch.tv/helix/streams?user_login=${user_id}`, {
             headers: {
                 'Client-ID': client_id,
                 'Authorization': `Bearer ${accessToken}`
@@ -56,9 +56,19 @@ function handleTwitchCallback() {
     }
 }
 
+function getUser() {
+    let person = prompt("Please enter your twitch channel:", "");
+    user_id = person;
+}
+
 window.onload = () => {
     if (localStorage.getItem("Oauth") == null) localStorage.setItem("Oauth", false);
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
-    else if (localStorage.getItem("Oauth") == "true") handleTwitchCallback();
+    else if (localStorage.getItem("Oauth") == "true") {
+        getUser();
+        if (user_id) {
+            handleTwitchCallback();
+        }
+    };
 }
