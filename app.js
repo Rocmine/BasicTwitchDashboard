@@ -69,14 +69,13 @@ function changeURL(title,page) {
 }
 
 window.onload = () => {
-    changeURL("BasicTwitchDashboard","dash");
     if (localStorage.getItem("Oauth") == null) localStorage.setItem("Oauth", false);
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
+        changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         getUser();
         if (user_id) {
-            changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
             handleTwitchCallback();
         }
     };
