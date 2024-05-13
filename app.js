@@ -73,10 +73,10 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         getUser();
         if (user_id) {
             handleTwitchCallback();
+            changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         }
     };
 }
