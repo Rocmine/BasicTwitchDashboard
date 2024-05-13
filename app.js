@@ -19,7 +19,7 @@ function authenticateWithTwitch() {
     const params = {
         client_id,
         redirect_uri,
-        response_type: 'code', // Changed to 'token' for implicit grant flow
+        response_type: 'token', // Changed to 'token' for implicit grant flow
         scope
     };
     const queryString = new URLSearchParams(params).toString();
