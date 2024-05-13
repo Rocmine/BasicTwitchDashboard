@@ -19,7 +19,7 @@ function authenticateWithTwitch() {
     const params = {
         client_id,
         redirect_uri,
-        response_type: 'token', // Changed to 'token' for implicit grant flow
+        response_type: 'code', // Changed to 'token' for implicit grant flow
         scope
     };
     const queryString = new URLSearchParams(params).toString();
@@ -43,6 +43,7 @@ function handleTwitchCallback() {
 
 function fetchingInfo(cliid,token) {
     fetch(`https://api.twitch.tv/helix/streams?user_login=${user_id}`, {
+        method: 'POST',
             headers: {
                 'Client-ID': cliid,
                 'Authorization': `Bearer ${token}`
@@ -64,6 +65,7 @@ function getUser() {
 }
 
 window.onload = () => {
+    window.location.hash = '#';
     if (localStorage.getItem("Oauth") == null) localStorage.setItem("Oauth", false);
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
