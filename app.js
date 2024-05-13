@@ -37,6 +37,7 @@ function handleTwitchCallback() {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         fetchingInfo(client_id,accessToken);
+        changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         setInterval(() => {fetchingInfo(client_id,accessToken);},30000);
     }
 }
@@ -76,7 +77,6 @@ window.onload = () => {
         getUser();
         if (user_id) {
             handleTwitchCallback();
-            changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         }
     };
 }
