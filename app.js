@@ -65,7 +65,7 @@ function getUser() {
 }
 
 function changeURL(title,page) {
-    window.history.replaceState("Nah where are you going", title, `/${page}`);
+    window.history.pushState("Nah where are you going", title, `/${page}`);
 }
 
 window.onload = () => {
