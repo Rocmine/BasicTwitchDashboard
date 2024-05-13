@@ -64,14 +64,19 @@ function getUser() {
     user_id = person;
 }
 
+function changeURL(title,page) {
+    window.history.replaceState("Nah where are you going", title, `/${page}`);
+}
+
 window.onload = () => {
-    window.location.hash = '#';
+    changeURL("BasicTwitchDashboard","dash");
     if (localStorage.getItem("Oauth") == null) localStorage.setItem("Oauth", false);
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
         getUser();
         if (user_id) {
+            changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
             handleTwitchCallback();
         }
     };
