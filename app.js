@@ -31,7 +31,6 @@ function authenticateWithTwitch() {
 
 // Function to handle Twitch authentication callback
 function handleTwitchCallback() {
-    // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
     localStorage.setItem("token",accessToken);
     if (localStorage.getItem("token")) {
@@ -51,24 +50,24 @@ function handleTwitchCallback() {
 
 function fetchingInfo(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/users?login=${localStorage.getItem("user_id")}`, {
-        method: 'POST', // Changed method to GET
+        method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
         }
     })
-    .then(res => {
-        sessionTimeEl.textContent = res.data[0].title;
-        viewersCountEl.textContent = res.data[0].viewer_count;
-        bitrateEl.textContent = res.data[0].game_name;
-        localStorage.setItem("broadcasterid",res.data[0].id);
+    .then(resp => {
+        sessionTimeEl.textContent = resp.data[0].title;
+        viewersCountEl.textContent = resp.data[0].viewer_count;
+        bitrateEl.textContent = resp.data[0].game_name;
+        if (!localStorage.getItem("broadcasterid")) localStorage.setItem("broadcasterid",resp.data[0].id);
     })
     .catch(error => console.error('Error:', error));
 }
 
 function fetchingInfoSubs(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/subs?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
-        method: 'POST', // Changed method to GET
+        method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
@@ -83,7 +82,7 @@ function fetchingInfoSubs(cliid, jwttoken) {
 
 function fetchingInfoFollow(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/followers?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
-        method: 'POST', // Changed method to GET
+        method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
