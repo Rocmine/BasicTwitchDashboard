@@ -33,33 +33,46 @@ function authenticateWithTwitch() {
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-    sessionStorage.setItem("token",accessToken);
-    if (sessionStorage.getItem("token")) {
+    localStorage.setItem("token",accessToken);
+    if (localStorage.getItem("token")) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${localStorage.getItem("user_id")}/chat`);
-        fetchingInfo(client_id,sessionStorage.getItem("token"));
+        fetchingInfo(client_id,localStorage.getItem("token"));
         changeURL(`BasicTwitchDashboard - ${localStorage.getItem("user_id")}` ,"dash");
-        setInterval(() => {fetchingInfo(client_id,sessionStorage.getItem("token"));},30000);
+        setInterval(() => {fetchingInfo(client_id,localStorage.getItem("token"));},30000);
     }
 }
 
-function fetchingInfo(cliid,jwttoken) {
+function fetchingInfo(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/streams?user_login=${localStorage.getItem("user_id")}`, {
-        method: 'POST',
-            headers: {
-                'Client-ID': cliid,
-                'Authorization': `Bearer ${jwttoken}`
-            }
-        })
-       .then(response => response.json())
-       .then(res => {
-            console.log(res);
+        method: 'GET', // Changed method to GET
+        headers: {
+            'Client-ID': cliid,
+            'Authorization': `Bearer ${jwttoken}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(res => {
+        console.log(res);
+        if (res.data.length > 0) {
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
             bitrateEl.textContent = res.data[0].game_name;
-        })
-       .catch(error => console.error('Error:', error));
+        } else {
+            // Handle case when no streams are found
+            sessionTimeEl.textContent = "No active stream";
+            viewersCountEl.textContent = "0";
+            bitrateEl.textContent = "N/A";
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
+
 
 function getUser() {
     let person = prompt("Please enter your twitch channel username:","");
