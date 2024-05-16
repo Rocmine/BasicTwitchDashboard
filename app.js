@@ -11,7 +11,7 @@ const ttvChat = document.querySelector('#chatting');
 // Twitch authentication parameters
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
-const scope = ["user:read:follows channel:read:subscriptions"]; // Adjust scopes as needed
+const scope = ["user:read:follows channel:read:subscriptions moderator:read:followers"]; // Adjust scopes as needed
 let user_id=null;
 
 // Function to redirect user to Twitch authentication page
@@ -63,6 +63,7 @@ function fetchingInfo(cliid, jwttoken) {
         return response.json();
     })
     .then(resp => {
+        console.log(resp);
         sessionTimeEl.textContent = resp.data[0].title;
         viewersCountEl.textContent = resp.data[0].viewer_count;
         bitrateEl.textContent = resp.data[0].game_name;
@@ -86,6 +87,7 @@ function fetchingInfoSubs(cliid, jwttoken) {
         return response.json();
     })
     .then(res => {
+            console.log(res);
             subsPointEl.textContent = res.points;
             subsCountEl.textContent = res.total;
     })
@@ -93,7 +95,7 @@ function fetchingInfoSubs(cliid, jwttoken) {
 }
 
 function fetchingInfoFollow(cliid, jwttoken) {
-    fetch(`https://api.twitch.tv/helix/followers?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
+    fetch(`https://api.twitch.tv/helix/channels/followers?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
         method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
@@ -107,6 +109,7 @@ function fetchingInfoFollow(cliid, jwttoken) {
         return response.json();
     })
     .then(res => {
+            console.log(res);
             followCountEl.textContent = res.total;
     })
     .catch(error => console.error('Error:', error));
