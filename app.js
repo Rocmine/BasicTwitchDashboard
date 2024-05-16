@@ -126,7 +126,7 @@ function changeURL(title, page) {
 window.onload = () => {
     if (localStorage.getItem("Oauth") == null) localStorage.setItem("Oauth", false);
 
-    if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
+    if (localStorage.getItem("Oauth") == "false" && !localStorage.getItem("token")) authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
         if (!localStorage.getItem("user_id")) getUser();
         handleTwitchCallback();
