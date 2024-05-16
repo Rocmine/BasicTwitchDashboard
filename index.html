@@ -12,25 +12,30 @@
             width: 100%;
             height: 100%;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
+            text-align: left;
             overflow: hidden;
             color: white;
             border: none;
         }
         h1 {
             color:red;
-            font-size: 5vmax;
+            font-size: 4vmax;
+            text-align: center;
+        }
+        .title {
+            font-size: 2vmax;
         }
         h3 {
-            font-size: 2vmax;
+            font-size: 0.5vmax;
         }
         a {
             background-color: blueviolet;
             padding: 1% 4%;
-            font-size: 35px;
+            margin: 10% 0%;
+            font-size: 30px;
             text-decoration: none;
             color: white;
             border: none;
@@ -48,10 +53,15 @@
 </head>
 
 <body>
-    <h3>BasicTwitchDashboard</h3>
+    <h3 class="title">BasicTwitchDashboard</h3>
     <h5>BY ROCMINE</h5>
     <h1>DO NOT SHOW THIS ON STREAM WHILE LOADING</h1>
-    <h3>When you are ready, click on the button</h3>
+    <h3>Reminder:
+        <br>+ To view subs info, you need to be the owner of the channel.
+        <br>+ When the site finished loading,you can view the page
+        <br>+ If u want to support Rocmine,feel free to shoutout his twitch channel: twitch.tv/rocmine
+        <br>+ when the site load, it will ask you to enter your channel name, maybe i will fetch it automaticaly later 
+    </h3>
     <a href="./dash">I´m ready</a>
     <script>
     </script>
