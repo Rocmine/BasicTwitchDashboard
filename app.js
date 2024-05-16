@@ -51,7 +51,7 @@ function handleTwitchCallback() {
 
 function fetchingInfo(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/users?login=${localStorage.getItem("user_id")}`, {
-        method: 'GET', // Changed method to GET
+        method: 'POST', // Changed method to GET
         headers: {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
@@ -76,7 +76,7 @@ function fetchingInfo(cliid, jwttoken) {
 
 function fetchingInfoSubs(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/subs?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
-        method: 'GET', // Changed method to GET
+        method: 'POST', // Changed method to GET
         headers: {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
@@ -94,7 +94,7 @@ function fetchingInfoSubs(cliid, jwttoken) {
 
 function fetchingInfoFollow(cliid, jwttoken) {
     fetch(`https://api.twitch.tv/helix/followers?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
-        method: 'GET', // Changed method to GET
+        method: 'POST', // Changed method to GET
         headers: {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
