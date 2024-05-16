@@ -34,13 +34,13 @@ function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
     sessionStorage.setItem("token",accessToken);
-    if (sessionStorage.getItem(token) == accessToken) {
+    if (sessionStorage.getItem("token") == accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         ttvChat.console.log = function() { /* nop */ };
-        fetchingInfo(client_id,sessionStorage.getItem(token));
+        fetchingInfo(client_id,sessionStorage.getItem("token"));
         changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
-        setInterval(() => {fetchingInfo(client_id,sessionStorage.getItem(token));},30000);
+        setInterval(() => {fetchingInfo(client_id,sessionStorage.getItem("token"));},30000);
     }
 }
 
