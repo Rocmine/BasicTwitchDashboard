@@ -75,8 +75,8 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        if (!localStorage.getItem("user_id")) getUser();
-        else handleTwitchCallback();
+        if (!localStorage.getItem("user_id")) {getUser();}
+        handleTwitchCallback();
     };
 }
 
