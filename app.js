@@ -33,12 +33,13 @@ function authenticateWithTwitch() {
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-    if (accessToken) {
+    localStorage.setItem("token",accessToken);
+    if (localStorage.getItem("token") == accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
-        fetchingInfo(client_id,accessToken);
         changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
-        setInterval(() => {fetchingInfo(client_id,accessToken);},30000);
+        fetchingInfo(client_id,localStorage.getItem(token));
+        setInterval(() => {fetchingInfo(client_id,localStorage.getItem(token));},30000);
     }
 }
 
@@ -66,7 +67,7 @@ function getUser() {
 }
 
 function changeURL(title,page) {
-    window.history.replaceState("Nah where are you going", title, `BasicTwitchDashboard/${page}`);
+    window.history.replaceState("Nah where are you going", title, `./${page}`);
 }
 
 window.onload = () => {
