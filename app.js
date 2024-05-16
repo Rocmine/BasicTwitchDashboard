@@ -58,18 +58,10 @@ function fetchingInfo(cliid, jwttoken) {
         }
     })
     .then(res => {
-        console.log(res);
-        if (res.data.length > 0) {
-            sessionTimeEl.textContent = res.data[0].title;
-            viewersCountEl.textContent = res.data[0].viewer_count;
-            bitrateEl.textContent = res.data[0].game_name;
-            localStorage.setItem("broadcasterid",res.data[0].id);
-        } else {
-            // Handle case when no streams are found
-            sessionTimeEl.textContent = "No active stream";
-            viewersCountEl.textContent = "0";
-            bitrateEl.textContent = "N/A";
-        }
+        sessionTimeEl.textContent = res.data[0].title;
+        viewersCountEl.textContent = res.data[0].viewer_count;
+        bitrateEl.textContent = res.data[0].game_name;
+        localStorage.setItem("broadcasterid",res.data[0].id);
     })
     .catch(error => console.error('Error:', error));
 }
@@ -83,11 +75,8 @@ function fetchingInfoSubs(cliid, jwttoken) {
         }
     })
     .then(res => {
-        console.log(res);
-        if (res.data.length > 0) {
             subsPointEl.textContent = res.points;
             subsCountEl.textContent = res.total;
-        }
     })
     .catch(error => console.error('Error:', error));
 }
@@ -101,10 +90,7 @@ function fetchingInfoFollow(cliid, jwttoken) {
         }
     })
     .then(res => {
-        console.log(res);
-        if (res.data.length > 0) {
             followCountEl.textContent = res.total;
-        }
     })
     .catch(error => console.error('Error:', error));
 }
