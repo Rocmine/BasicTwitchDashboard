@@ -93,7 +93,7 @@ window.onload = () => {
     };
 }
 
-function clearData() {
+function clearDataChannel() {
     clearData();
     window.location.href = window.URL + "/BasicTwitchDashboard";
 }
