@@ -76,7 +76,7 @@ function fetchingInfo(cliid, jwttoken) {
 }
 
 function fetchingInfoSubs(cliid, jwttoken) {
-    fetch(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
+    fetch(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${localStorage.getItem("broadcasterid")}&user_id=${localStorage.getItem("user_id")}`, {
         method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
