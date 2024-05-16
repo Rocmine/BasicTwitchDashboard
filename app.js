@@ -82,7 +82,7 @@ window.onload = () => {
     };
 }
 
-window.addEventListener("close",() => {
+window.addEventListener("beforeunload",() => {
     clearInterval();
     localStorage.removeItem("token");
 })
