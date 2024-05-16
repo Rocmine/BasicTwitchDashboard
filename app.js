@@ -36,15 +36,15 @@ function handleTwitchCallback() {
     sessionStorage.setItem("token",accessToken);
     if (sessionStorage.getItem("token")) {
         // Use the access token to make requests to the Twitch API
-        ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
+        ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${localStorage.getItem("user_id")}/chat`);
         fetchingInfo(client_id,sessionStorage.getItem("token"));
-        changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
+        changeURL(`BasicTwitchDashboard - ${localStorage.getItem("user_id")}` ,"dash");
         setInterval(() => {fetchingInfo(client_id,sessionStorage.getItem("token"));},30000);
     }
 }
 
 function fetchingInfo(cliid,jwttoken) {
-    fetch(`https://api.twitch.tv/helix/streams?user_login=${user_id}`, {
+    fetch(`https://api.twitch.tv/helix/streams?user_login=${localStorage.getItem("user_id")}`, {
         method: 'POST',
             headers: {
                 'Client-ID': cliid,
@@ -63,7 +63,7 @@ function fetchingInfo(cliid,jwttoken) {
 
 function getUser() {
     let person = prompt("Please enter your twitch channel username:","");
-    sessionStorage.setItem("user_id",person);
+    localStorage.setItem("user_id",person);
 }
 
 function changeURL(title,page) {
@@ -75,9 +75,13 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        if (!sessionStorage.getItem("user_id")) getUser();
+        if (!localStorage.getItem("user_id")) getUser();
         else handleTwitchCallback();
     };
+}
+
+function clearUser() {
+    localStorage.removeItem("user_id");
 }
 
 window.addEventListener("beforeunload",() => {
