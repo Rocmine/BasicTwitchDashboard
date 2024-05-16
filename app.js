@@ -152,10 +152,6 @@ function clearDataChannel() {
     window.location.href = window.URL + "/BasicTwitchDashboard";
 }
 
-window.addEventListener("beforeunload",() => {
-    clearInterval();
-})
-
 // ROCMINE
 // Made with Love <3
 // i love noura
