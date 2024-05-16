@@ -36,21 +36,16 @@ function handleTwitchCallback() {
     if (localStorage.getItem("token")) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src", `https://www.twitch.tv/popout/${localStorage.getItem("user_id")}/chat`);
+        fetchingInfoFollow(client_id, localStorage.getItem("token"));
         fetchingInfo(client_id, localStorage.getItem("token"));
         setTimeout(() => {
             fetchingInfoSubs(client_id, localStorage.getItem("token"));
-            setTimeout(() => {
-                fetchingInfoFollow(client_id, localStorage.getItem("token"));
-            }, 5000);
         }, 5000);
         changeURL(`BasicTwitchDashboard - ${localStorage.getItem("user_id")}`, "dash");
         setInterval(() => {
             fetchingInfo(client_id, localStorage.getItem("token"));
             setTimeout(() => {
                 fetchingInfoSubs(client_id, localStorage.getItem("token"));
-                setTimeout(() => {
-                    fetchingInfoFollow(client_id, localStorage.getItem("token"));
-                }, 5000);
             }, 5000);
         }, 30000);
     }
