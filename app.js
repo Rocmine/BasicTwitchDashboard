@@ -56,6 +56,12 @@ function fetchingInfo(cliid, jwttoken) {
             'Authorization': `Bearer ${jwttoken}`
         }
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error ${res.status}`);
+        }
+        return response.json();
+    })
     .then(resp => {
         sessionTimeEl.textContent = resp.data[0].title;
         viewersCountEl.textContent = resp.data[0].viewer_count;
@@ -73,6 +79,12 @@ function fetchingInfoSubs(cliid, jwttoken) {
             'Authorization': `Bearer ${jwttoken}`
         }
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error ${res.status}`);
+        }
+        return response.json();
+    })
     .then(res => {
             subsPointEl.textContent = res.points;
             subsCountEl.textContent = res.total;
@@ -87,6 +99,12 @@ function fetchingInfoFollow(cliid, jwttoken) {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
         }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error ${res.status}`);
+        }
+        return response.json();
     })
     .then(res => {
             followCountEl.textContent = res.total;
