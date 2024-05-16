@@ -75,16 +75,13 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        getUser();
-        if (user_id) {
-            handleTwitchCallback();
-        }
+        if (sessionStorage.getItem("token")) getUser();
+        if (user_id) handleTwitchCallback();
     };
 }
 
 window.addEventListener("beforeunload",() => {
     clearInterval();
-    sessionStorage.removeItem("token");
 })
 
 // ROCMINE
