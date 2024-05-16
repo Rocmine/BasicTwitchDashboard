@@ -93,10 +93,8 @@ window.onload = () => {
     };
 }
 
-function clear() {
-    localStorage.removeItem("Oauth");
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_id");
+function clearData() {
+    clearData();
     window.location.href = window.URL + "/BasicTwitchDashboard";
 }
 
