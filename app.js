@@ -70,7 +70,7 @@ function fetchingInfo(cliid, jwttoken) {
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
             bitrateEl.textContent = res.data[0].game_name;
-            localStorage.setItem("broadcasterid",res.id);
+            localStorage.setItem("broadcasterid",res.data[0].id);
         } else {
             // Handle case when no streams are found
             sessionTimeEl.textContent = "No active stream";
@@ -146,6 +146,8 @@ window.onload = () => {
         handleTwitchCallback();
     };
 }
+
+
 
 function clearDataChannel() {
     clearData();
