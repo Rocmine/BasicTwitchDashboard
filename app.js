@@ -49,7 +49,7 @@ function handleTwitchCallback() {
 }
 
 function fetchingInfo(cliid, jwttoken) {
-    fetch(`https://api.twitch.tv/helix/users?login=${localStorage.getItem("user_id")}`, {
+    fetch(`https://api.twitch.tv/helix/streams?user_login=${localStorage.getItem("user_id")}`, {
         method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
