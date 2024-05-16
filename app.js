@@ -68,7 +68,7 @@ function fetchingInfo(cliid, jwttoken) {
         .then(resp => {
             console.log(resp);
             sessionTimeEl.textContent = resp.data[0].title;
-            viewersCountEl.textContent = resp.data[0].viewer_count;
+            viewersCountEl.textContent = resp.data[0].viewer_count.toLocaleString();
             bitrateEl.textContent = resp.data[0].game_name;
             if (!localStorage.getItem("broadcasterid")) localStorage.setItem("broadcasterid", resp.data[0].id);
         })
@@ -109,7 +109,7 @@ function fetchingInfoFollow(cliid, jwttoken) {
         })
         .then(res => {
             console.log(res);
-            followCountEl.textContent = res.followers_total;
+            followCountEl.textContent = res.followers_total.toLocaleString();
         })
         .catch(error => console.error('Error:', error));
 }
