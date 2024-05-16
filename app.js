@@ -58,7 +58,7 @@ function fetchingInfo(cliid, jwttoken) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error ${res.status}`);
+            throw new Error(`HTTP error ${response.status}`);
         }
         return response.json();
     })
@@ -82,7 +82,7 @@ function fetchingInfoSubs(cliid, jwttoken) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error ${res.status}`);
+            throw new Error(`HTTP error ${response.status}`);
         }
         return response.json();
     })
@@ -104,7 +104,7 @@ function fetchingInfoFollow(cliid, jwttoken) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error ${res.status}`);
+            throw new Error(`HTTP error ${response.status}`);
         }
         return response.json();
     })
