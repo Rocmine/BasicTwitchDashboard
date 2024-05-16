@@ -51,7 +51,7 @@ function handleTwitchCallback() {
 }
 
 function fetchingInfo(cliid, jwttoken) {
-    fetch(`https://api.twitch.tv/helix/streams?user_login=${localStorage.getItem("user_id")}`, {
+    fetch(`https://api.twitch.tv/helix/users?login=${localStorage.getItem("user_id")}`, {
         method: 'GET', // Changed method to GET
         headers: {
             'Client-ID': cliid,
@@ -70,6 +70,7 @@ function fetchingInfo(cliid, jwttoken) {
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
             bitrateEl.textContent = res.data[0].game_name;
+            localStorage.setItem("user_id",res.data[0].login);
             localStorage.setItem("broadcasterid",res.data[0].id);
         } else {
             // Handle case when no streams are found
@@ -142,7 +143,6 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        if (!localStorage.getItem("user_id")) {getUser();}
         handleTwitchCallback();
     };
 }
