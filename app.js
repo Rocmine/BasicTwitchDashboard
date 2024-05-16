@@ -33,14 +33,14 @@ function authenticateWithTwitch() {
 function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-    localStorage.setItem("token",accessToken);
-    if (localStorage.getItem(token) == accessToken) {
+    sessionStorage.setItem("token",accessToken);
+    if (sessionStorage.getItem(token) == accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         ttvChat.console.log = function() { /* nop */ };
-        fetchingInfo(client_id,localStorage.getItem(token));
+        fetchingInfo(client_id,sessionStorage.getItem(token));
         changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
-        setInterval(() => {fetchingInfo(client_id,localStorage.getItem(token));},30000);
+        setInterval(() => {fetchingInfo(client_id,sessionStorage.getItem(token));},30000);
     }
 }
 
@@ -85,7 +85,7 @@ window.onload = () => {
 
 window.addEventListener("beforeunload",() => {
     clearInterval();
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
 })
 
 // ROCMINE
