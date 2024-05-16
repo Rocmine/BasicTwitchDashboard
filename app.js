@@ -34,7 +34,7 @@ function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
     sessionStorage.setItem("token",accessToken);
-    if (sessionStorage.getItem("token") == accessToken) {
+    if (sessionStorage.getItem("token")) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         fetchingInfo(client_id,sessionStorage.getItem("token"));
@@ -62,7 +62,7 @@ function fetchingInfo(cliid,jwttoken) {
 }
 
 function getUser() {
-    let person = prompt("Please enter your twitch channel username:", "");
+    let person = prompt("Please enter your twitch channel username:");
     sessionStorage.setItem("user_id") = person;
 }
 
@@ -75,7 +75,7 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        if (sessionStorage.getItem("user_id") == null) getUser();
+        if (sessionStorage.getItem("user_id")) getUser();
         else handleTwitchCallback();
     };
 }
@@ -86,4 +86,3 @@ window.addEventListener("beforeunload",() => {
 
 // ROCMINE
 // Made with Love <3
-// Life is a roblox
