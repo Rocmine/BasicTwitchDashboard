@@ -58,12 +58,6 @@ function fetchingInfo(cliid, jwttoken) {
             'Authorization': `Bearer ${jwttoken}`
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
     .then(res => {
         console.log(res);
         if (res.data.length > 0) {
@@ -90,12 +84,6 @@ function fetchingInfoSubs(cliid, jwttoken) {
             'Authorization': `Bearer ${jwttoken}`
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
     .then(res => {
         console.log(res);
         if (res.data.length > 0) {
@@ -113,12 +101,6 @@ function fetchingInfoFollow(cliid, jwttoken) {
             'Client-ID': cliid,
             'Authorization': `Bearer ${jwttoken}`
         }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
     })
     .then(res => {
         console.log(res);
