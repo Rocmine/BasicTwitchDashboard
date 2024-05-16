@@ -12,6 +12,7 @@ const ttvChat = document.querySelector('#chatting');
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
 const scope = "user:read:follows"; // Adjust scopes as needed
+const scopeSub = "channel:read:subscriptions";
 let user_id=null;
 
 // Function to redirect user to Twitch authentication page
@@ -38,8 +39,14 @@ function handleTwitchCallback() {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${localStorage.getItem("user_id")}/chat`);
         fetchingInfo(client_id,localStorage.getItem("token"));
+        fetchingInfoSubs(client_id,localStorage.getItem("token"));
+        fetchingInfoFollow(client_id,localStorage.getItem("token"));
         changeURL(`BasicTwitchDashboard - ${localStorage.getItem("user_id")}` ,"dash");
-        setInterval(() => {fetchingInfo(client_id,localStorage.getItem("token"));},30000);
+        setInterval(() => {
+            fetchingInfo(client_id,localStorage.getItem("token"));
+            fetchingInfoSubs(client_id,localStorage.getItem("token"));
+            fetchingInfoFollow(client_id,localStorage.getItem("token"));
+        },30000);
     }
 }
 
@@ -63,6 +70,7 @@ function fetchingInfo(cliid, jwttoken) {
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
             bitrateEl.textContent = res.data[0].game_name;
+            localStorage.setItem("broadcasterid",res.id);
         } else {
             // Handle case when no streams are found
             sessionTimeEl.textContent = "No active stream";
@@ -73,6 +81,52 @@ function fetchingInfo(cliid, jwttoken) {
     .catch(error => console.error('Error:', error));
 }
 
+function fetchingInfoSubs(cliid, jwttoken) {
+    fetch(`https://api.twitch.tv/helix/subs?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
+        method: 'GET', // Changed method to GET
+        headers: {
+            'Client-ID': cliid,
+            'Authorization': `Bearer ${jwttoken}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(res => {
+        console.log(res);
+        if (res.data.length > 0) {
+            subsPointEl.textContent = res.points;
+            subsCountEl.textContent = res.total;
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function fetchingInfoFollow(cliid, jwttoken) {
+    fetch(`https://api.twitch.tv/helix/followers?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
+        method: 'GET', // Changed method to GET
+        headers: {
+            'Client-ID': cliid,
+            'Authorization': `Bearer ${jwttoken}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(res => {
+        console.log(res);
+        if (res.data.length > 0) {
+            followCountEl.textContent = res.total;
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 function getUser() {
     let person = prompt("Please enter your twitch channel username:","");
