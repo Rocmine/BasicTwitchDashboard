@@ -38,8 +38,8 @@ function handleTwitchCallback() {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         fetchingInfo(client_id,sessionStorage.getItem("token"));
-        changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         setInterval(() => {fetchingInfo(client_id,sessionStorage.getItem("token"));},30000);
+        changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
     }
 }
 
