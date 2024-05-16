@@ -7,7 +7,6 @@ const sessionTimeEl = document.querySelector('#session h1');
 const bitrateEl = document.querySelector('#bitrate h1');
 
 const ttvChat = document.querySelector('#chatting');
-let token = localStorage.getItem(token);
 
 // Twitch authentication parameters
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
@@ -35,11 +34,11 @@ function handleTwitchCallback() {
     // Parse access token from URL fragment
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
     localStorage.setItem("token",accessToken);
-    if (token == accessToken) {
+    if (localStorage.getItem(token) == accessToken) {
         // Use the access token to make requests to the Twitch API
         ttvChat.setAttribute("src",`https://www.twitch.tv/popout/${user_id}/chat`);
         ttvChat.console.log = function() { /* nop */ };
-        fetchingInfo(client_id,);
+        fetchingInfo(client_id,localStorage.getItem(token));
         changeURL(`BasicTwitchDashboard - ${user_id}` ,"dash");
         setInterval(() => {fetchingInfo(client_id,localStorage.getItem(token));},30000);
     }
