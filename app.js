@@ -84,6 +84,7 @@ window.onload = () => {
 
 window.addEventListener("close",() => {
     clearInterval();
+    localStorage.removeItem("token");
 })
 
 // ROCMINE
