@@ -63,7 +63,7 @@ function fetchingInfo(cliid,jwttoken) {
 
 function getUser() {
     let person = prompt("Please enter your twitch channel username:","");
-    sessionStorage.getItem("user_id",person);
+    sessionStorage.setItem("user_id",person);
 }
 
 function changeURL(title,page) {
