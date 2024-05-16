@@ -63,7 +63,7 @@ function fetchingInfo(cliid,jwttoken) {
 
 function getUser() {
     let person = prompt("Please enter your twitch channel username:", "");
-    user_id = person;
+    sessionStorage.setItem("user_id") = person;
 }
 
 function changeURL(title,page) {
@@ -75,8 +75,8 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        if (sessionStorage.getItem("token")) getUser();
-        if (user_id) handleTwitchCallback();
+        if (sessionStorage.getItem("user_id") == "null") getUser();
+        else handleTwitchCallback();
     };
 }
 
