@@ -63,7 +63,6 @@ function fetchingInfo(cliid, jwttoken) {
             sessionTimeEl.textContent = res.data[0].title;
             viewersCountEl.textContent = res.data[0].viewer_count;
             bitrateEl.textContent = res.data[0].game_name;
-            localStorage.setItem("user_id",res.data[0].login);
             localStorage.setItem("broadcasterid",res.data[0].id);
         } else {
             // Handle case when no streams are found
@@ -124,10 +123,10 @@ window.onload = () => {
 
     if (localStorage.getItem("Oauth") == "false") authenticateWithTwitch();
     else if (localStorage.getItem("Oauth") == "true") {
-        handleTwitchCallback();
+        if (!localStorage.getItem("user_id")) getUser();
+        else handleTwitchCallback();
     };
 }
-
 
 
 function clearDataChannel() {
