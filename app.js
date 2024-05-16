@@ -98,12 +98,8 @@ function fetchingInfoSubs(cliid, jwttoken) {
 }
 
 function fetchingInfoFollow(cliid, jwttoken) {
-    fetch(`https://api.twitch.tv/helix/channels/followers?broadcaster_id=${localStorage.getItem("broadcasterid")}`, {
+    fetch(`https://twitchtracker.com/api/channels/summary/${localStorage.getItem("user_id")}`, {
         method: 'GET', // Changed method to GET
-        headers: {
-            'Client-ID': cliid,
-            'Authorization': `Bearer ${jwttoken}`
-        }
     })
         .then(response => {
             if (!response.ok) {
@@ -113,7 +109,7 @@ function fetchingInfoFollow(cliid, jwttoken) {
         })
         .then(res => {
             console.log(res);
-            followCountEl.textContent = res.total;
+            followCountEl.textContent = res.followers_total;
         })
         .catch(error => console.error('Error:', error));
 }
