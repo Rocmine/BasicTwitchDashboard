@@ -11,8 +11,7 @@ const ttvChat = document.querySelector('#chatting');
 // Twitch authentication parameters
 const client_id = "1lvh0n0oidy746dj9jl22t6xzbguo3";
 const redirect_uri = "https://rocmine.github.io/BasicTwitchDashboard/dash";
-const scope = ["user:read:follows","channel:read:subscriptions"]; // Adjust scopes as needed
-scope.join(" ");
+const scope = ["user:read:follows channel:read:subscriptions"]; // Adjust scopes as needed
 let user_id=null;
 
 // Function to redirect user to Twitch authentication page
